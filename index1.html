@@ -642,7 +642,9 @@
         t && (e(t),
         $(this).addClass("on")))
     })
-
+    window.platform = [
+                        {"name": "_czc", "id": "1263696445"}
+                    ];
     window.h6app_shareConfig = {
         'shareData': {
             title: '111BAZAAR明星慈善夜15周年盛大启幕',
@@ -667,20 +669,20 @@
 
 
     (function() {
-           /* window.statistics = function(platforms, key, value) {
+            window.statistics = function(platforms, key, value) {
                 for (var i = 0; i < platforms.length; i++) {
                     platforms[i].name && eval(platforms[i].name + ".push(['_trackEvent','" + key + "','" + value + "'])")
                 }
-            }*/
+            }
             ;
             window.h6app_shareConfig = window.h6app_shareConfig || {};
             window.h6app_shareConfig.shareData || (window.h6app_shareConfig.shareData = {});
-           // window.setShareData = function() {
+           window.setShareData = function() {
                 wx.ready(function() {
-                    /*var shareFriendSuccessFunc = function() {
+                    var shareFriendSuccessFunc = function() {
                         window.statistics(window.platform, "-", window.h6app_shareConfig.toFriend || "分享到好友和群组");
                         h6app_shareConfig.success()
-                    };*/
+                    };
                     var shareAppData = {
                         title: h6app_shareConfig.shareData.title || "",
                         desc: h6app_shareConfig.shareData.desc || "",
@@ -690,10 +692,10 @@
                         cancel: h6app_shareConfig.cancel || function() {}
                     };
                     wx.onMenuShareAppMessage(shareAppData);
-                    /*var shareTimelineSuccessFunc = function() {
+                    var shareTimelineSuccessFunc = function() {
                         window.statistics(window.platform, "-", window.h6app_shareConfig.toTimeLine || "分享到朋友圈");
                         h6app_shareConfig.success()
-                    };*/
+                    };
                     var TimelineShareData = {
                         title: h6app_shareConfig.timeLineTitle || h6app_shareConfig.shareData.title || "",
                         desc: h6app_shareConfig.timeLineDesc || h6app_shareConfig.shareData.desc || "",
@@ -704,8 +706,8 @@
                     };
                     wx.onMenuShareTimeline(TimelineShareData)
                 })
-            //}
-            /*;
+            }
+            ;
             window.resetShareData = function(resetShareDataFunc) {
                 resetShareDataFunc();
                 window.setShareData()
@@ -725,8 +727,8 @@
                 setShareData()
             }
             ;
-            getConfig("setConfig");*/
-            /*pvStatistics();
+            getConfig("setConfig");
+            pvStatistics();
             function pvStatistics(platform, key, value) {
                 for (var i = 0; i < window.platform.length; i++) {
                     if (window.platform.name == "_hmt") {
@@ -744,7 +746,7 @@
                         }
                     }
                 }
-            }*/
+            }
         }
         )();
 
