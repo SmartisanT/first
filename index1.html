@@ -376,7 +376,7 @@
 <body>
 <div id="loading">
     <div class="inner">
-        <div class="percent">3%</div>
+        <div class="percent">100%</div>
     </div>
 </div>
 
@@ -473,14 +473,14 @@
         // {id: "mm", src:"images/name-head/ym.png"},
         // {id: "mm", src:"images/name-head/zzy.png"}
     ]);
-    queue.on("progress", function loading(e) {
+    /*queue.on("progress", function loading(e) {
         $("#loading .percent").text(parseInt(100 * e.progress) + "%");
         if (parseInt(100 * e.progress)>=100) {
             handleComplete()
         };
-    }, this)
+    }, this)*/
     //queue.on("complete", handleComplete, this);
-
+    handleComplete();
     function handleComplete() {
         //createjs.Sound.play("sound");
         //console.log("kjkjk");
@@ -492,13 +492,12 @@
                     setTimeout(function() {
                         $("#loading .percent").fadeOut();
                         $("#loading1 .logo").addClass("logo-scale");
-                        render1();
-                                // setTimeout(function() {
-                                //             render1()
-                                //             //$("#loading1").remove(),
-                                //             //$("#section2").find(".arrow-tip,.arrow").removeClass("hide").hide().fadeIn(1e3)
-                                // }, 1500)
-                    }, 1500)
+                                setTimeout(function() {
+                                            render1()
+                                            //$("#loading1").remove(),
+                                            //$("#section2").find(".arrow-tip,.arrow").removeClass("hide").hide().fadeIn(1e3)
+                                }, 1500)
+                    }, 3500)
 
     }
     function playMusic(audioId, musicBtnId) {
