@@ -474,9 +474,12 @@
         {id: "mm", src:"images/name-head/zzy.png"}
     ]);
     queue.on("progress", function loading(e) {
-        $("#loading .percent").text(parseInt(100 * e.progress) + "%")
+        $("#loading .percent").text(parseInt(100 * e.progress) + "%");
+        if (parseInt(100 * e.progress)>=100) {
+            handleComplete()
+        };
     }, this)
-    queue.on("complete", handleComplete, this);
+    //queue.on("complete", handleComplete, this);
 
     function handleComplete() {
         //createjs.Sound.play("sound");
