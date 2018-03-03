@@ -645,15 +645,16 @@
     window.platform = [
                         {"name": "_czc", "id": "1263696445"}
                     ];
+     var link = location.origin+'/first/index1.html';               
     window.h6app_shareConfig = {
         'shareData': {
             title: '111BAZAAR明星慈善夜15周年盛大启幕',
             desc: '十五',
-            imgUrl: 'https://www.baidu.com/img/bd_logo1.png',
-            link: 'https://smartisant.github.io/first/index1.html'
+            imgUrl: link+'/first/images/share.jpg',
+            link: link
         },
         'timeLineTitle': 'BAZAAR明星慈善夜15周年盛大启幕',  //选填，朋友圈标题，未填写将会取值shareData.title
-        //'timeLineImgUrl': link + 'resource/images/share.jpg', //选填，朋友圈图片信息，未填写将会取值shareData.imgUrl
+        'timeLineImgUrl': link+'/first/images/share.jpg', //选填，朋友圈图片信息，未填写将会取值shareData.imgUrl
 
         success: function () {          //分享成功回调
         },
