@@ -451,27 +451,27 @@
     queue.loadFile({id:"sound", src:"source/lizhi.mp3"});
     queue.loadManifest([
         {id: "aa", src:"images/aa.png"},
-        {id: "bb", src:"images/bb.png"},
-        {id: "cc", src:"images/cc.png"},
-        {id: "dd", src:"images/dd.png"},
-        {id: "ee", src:"images/ee.png"},
-        {id: "ff", src:"images/detail-s17a6011d8d.png"},
-        {id: "gg", src:"images/loading-bg.png"},
-        {id: "hh", src:"images/jw-bg.png"},
-        {id: "ii", src:"images/loading-s94108564a4.png"},
-        {id: "jj", src:"images/section5-bg.png"},
-        {id: "kk", src:"images/share.png"},
-        {id: "ll", src:"source/lizhi.mp3"},
-        {id: "ll", src:"source/audio-zly.mp3"},
-        {id: "ll", src:"source/audio-ym.mp3"},
-        {id: "ll", src:"source/audio-sm.mp3"},
-        {id: "ll", src:"source/audio-hb.mp3"},
-        {id: "ll", src:"source/audio-fsf.mp3"},
-        {id: "mm", src:"images/name-head/fsf.png"},
-        {id: "mm", src:"images/name-head/hb.png"},
-        {id: "mm", src:"images/name-head/zly.png"},
-        {id: "mm", src:"images/name-head/ym.png"},
-        {id: "mm", src:"images/name-head/zzy.png"}
+        {id: "bb", src:"images/bb.png"}
+        // {id: "cc", src:"images/cc.png"},
+        // {id: "dd", src:"images/dd.png"},
+        // {id: "ee", src:"images/ee.png"},
+        // {id: "ff", src:"images/detail-s17a6011d8d.png"},
+        // {id: "gg", src:"images/loading-bg.png"},
+        // {id: "hh", src:"images/jw-bg.png"},
+        // {id: "ii", src:"images/loading-s94108564a4.png"},
+        // {id: "jj", src:"images/section5-bg.png"},
+        // {id: "kk", src:"images/share.png"},
+        // {id: "ll", src:"source/lizhi.mp3"},
+        // {id: "ll", src:"source/audio-zly.mp3"},
+        // {id: "ll", src:"source/audio-ym.mp3"},
+        // {id: "ll", src:"source/audio-sm.mp3"},
+        // {id: "ll", src:"source/audio-hb.mp3"},
+        // {id: "ll", src:"source/audio-fsf.mp3"},
+        // {id: "mm", src:"images/name-head/fsf.png"},
+        // {id: "mm", src:"images/name-head/hb.png"},
+        // {id: "mm", src:"images/name-head/zly.png"},
+        // {id: "mm", src:"images/name-head/ym.png"},
+        // {id: "mm", src:"images/name-head/zzy.png"}
     ]);
     queue.on("progress", function loading(e) {
         $("#loading .percent").text(parseInt(100 * e.progress) + "%");
@@ -492,11 +492,12 @@
                     setTimeout(function() {
                         $("#loading .percent").fadeOut();
                         $("#loading1 .logo").addClass("logo-scale");
-                                setTimeout(function() {
-                                            render1()
-                                            //$("#loading1").remove(),
-                                            //$("#section2").find(".arrow-tip,.arrow").removeClass("hide").hide().fadeIn(1e3)
-                                }, 1500)
+                        render1();
+                                // setTimeout(function() {
+                                //             render1()
+                                //             //$("#loading1").remove(),
+                                //             //$("#section2").find(".arrow-tip,.arrow").removeClass("hide").hide().fadeIn(1e3)
+                                // }, 1500)
                     }, 1500)
 
     }
