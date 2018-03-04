@@ -588,7 +588,6 @@
             //console.log()
             ss=mouseY - mouseYOnMouseDown;
             //console.log(mouseY - mouseYOnMouseDown )
-            console.log(targetRotation);
             //console.log(targetRotation - camera.position.z);
         }
 
@@ -603,7 +602,7 @@
     $("#section1 .head .container").on("click", "img", function() {
         var sound = $(this).parent().parent().data("tag");
         $(".head-container img").attr("src", "images/name-head/" + sound + ".png"),
-        (t = "source/audio-" + sound + ".mp3") && $("#music").hasClass("on") ? window.musicOn = !0 : window.musicOn = !1,
+        (t = "source/audio-" + sound + ".mp3") && $("#music").hasClass("on") ? window.musicOn = true : window.musicOn = false,
         window.prevPlay = 0,
         $("#section1 .inner2,#section1 .detail-bg").removeClass("hide")
     })
@@ -613,26 +612,26 @@
         document.getElementById("personMusic").pause(),
         $(".btn-music").removeClass("on"),
         window.musicOn && (playMusic("bgMusic", "music"),
-        window.musicOn = !1)
+        window.musicOn = false)
     })
 
     function e(e) {
         window.musicOn && pauseMusic("bgMusic", "music");
-        var t = document.getElementById("personMusic");
-        0 == window.prevPlay++ && (t.src = e),
-        isWeiXin() ? (t.play(),
+        var person = document.getElementById("personMusic");
+        0 == window.prevPlay++ && (person.src = e),
+        isWeiXin() ? (person.play(),
         wx.ready(function() {
             WeixinJSBridge.invoke("getNetworkType", {}, function(e) {
-                t.play()
+                person.play()
             })
-        })) : t.play(),
-        $(t).off("ended").on("ended", function() {
-            t.currentTime = 0,
-            t.pause(),
+        })) : person.play(),
+        $(person).off("ended").on("ended", function() {
+            person.currentTime = 0,
+            person.pause(),
             $(".btn-music").removeClass("on"),
             window.musicOn && (document.getElementById("personMusic").pause(),
             playMusic("bgMusic", "music"),
-            window.musicOn = !1)
+            window.musicOn = false)
         })
     }
 
@@ -641,20 +640,16 @@
         $(this).removeClass("on"),
         window.musicOn && (document.getElementById("personMusic").pause(),
         playMusic("bgMusic", "music"),
-        window.musicOn = !1)) : ($("#music").hasClass("on") ? window.musicOn = !0 : window.musicOn = !1,
+        window.musicOn = false)) : ($("#music").hasClass("on") ? window.musicOn = true : window.musicOn = false,
         t && (e(t),
         $(this).addClass("on")))
     })
 
     function render1() {
         timer1 = requestAnimationFrame(render1);
-        //camera.position.z-=0.1;
-        //cube.rotation.x += 0.1;
-        //cube.rotation.y += 0.01;
         renderer.render(scene, camera);
         TWEEN.update();
         if (camera.position.z <= -4100) {
-            console.log("fdff");
            window.cancelAnimationFrame(timer1);
            showDe();
         }
