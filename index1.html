@@ -555,15 +555,18 @@
     }
     initTween();
 
-    //document.addEventListener( 'touchstart', onDocumentTouchStart, false );
-    //document.addEventListener( 'touchmove', onDocumentTouchMove, false );
+    document.addEventListener( 'touchstart', onDocumentTouchStart, false );
+    document.addEventListener( 'touchmove', onDocumentTouchMove, false );
 
     function onDocumentTouchStart( event ) {
 
         if ( event.touches.length === 1 ) {
 
             event.preventDefault();
-
+            window.cancelAnimationFrame(timer1);
+            if (camera.position.z>= -4100) {
+                render2();
+            }
             mouseYOnMouseDown = event.touches[ 0 ].pageY - windowHalfY;
 
             targetRotationOnMouseDown = targetRotation;
@@ -578,15 +581,15 @@
 
             event.preventDefault();
             //TWEEN.stop();
-            window.cancelAnimationFrame(timer1);
-            render2();
+            //window.cancelAnimationFrame(timer1);
+            //render2();
             mouseY = event.touches[ 0 ].pageY - windowHalfY;
             targetRotation = targetRotationOnMouseDown + ( mouseY - mouseYOnMouseDown ) * 0.05;
             //console.log()
             ss=mouseY - mouseYOnMouseDown;
-            console.log(mouseY - mouseYOnMouseDown )
+            //console.log(mouseY - mouseYOnMouseDown )
             console.log(targetRotation);
-            console.log(targetRotation - camera.position.z);
+            //console.log(targetRotation - camera.position.z);
         }
 
     }
@@ -598,9 +601,9 @@
     }
 
     $("#section1 .head .container").on("click", "img", function() {
-        var e = $(this).parent().parent().data("tag");
-        $(".head-container img").attr("src", "images/name-head/" + e + ".png"),
-        (t = "source/audio-" + e + ".mp3") && $("#music").hasClass("on") ? window.musicOn = !0 : window.musicOn = !1,
+        var sound = $(this).parent().parent().data("tag");
+        $(".head-container img").attr("src", "images/name-head/" + sound + ".png"),
+        (t = "source/audio-" + sound + ".mp3") && $("#music").hasClass("on") ? window.musicOn = !0 : window.musicOn = !1,
         window.prevPlay = 0,
         $("#section1 .inner2,#section1 .detail-bg").removeClass("hide")
     })
@@ -642,121 +645,6 @@
         t && (e(t),
         $(this).addClass("on")))
     })
-    window.platform = [
-                        {"name": "_czc", "id": "1263696445"}
-                    ];
-     var link = location.origin+'/first/index1.html';               
-    window.h6app_shareConfig = {
-        'shareData': {
-            title: '111BAZAAR明星慈善夜15周年盛大启幕',
-            desc: '十五',
-            imgUrl: link+'/first/images/share.jpg',
-            link: link
-        },
-        'timeLineTitle': 'BAZAAR明星慈善夜15周年盛大启幕',  //选填，朋友圈标题，未填写将会取值shareData.title
-        'timeLineImgUrl': link+'/first/images/share.jpg', //选填，朋友圈图片信息，未填写将会取值shareData.imgUrl
-
-        success: function () {          //分享成功回调
-        },
-        cancel: function () {            //分享取消回调
-        },
-
-        fromGroup: "",               //选填，统计来源群组名称，默认为 来自微信群
-        fromSingle: "",              //选填，统计来源好友名称，默认为 来自好友
-        fromTimline: "",             //选填，统计来源空间名称，默认为 来自朋友圈
-        toFriend: "",                //选填，统计分享到好友和群组名称，默认为 好友和群组
-        toTimeLine: "",              //选填，统计分享到QQ空间名称，默认为 朋友圈
-    };
-
-
-    for (var i = 0; i < window.platform.length; i++) {
-    eval("var " + window.platform[i].name + " = " + window.platform[i].name + " || [];");
-    eval(window.platform[i].name + ".push(['_setAccount','" + window.platform[i].id + "']);")
-}
-(function() {
-    window.statistics = function(platforms, key, value) {
-        for (var i = 0; i < platforms.length; i++) {
-            platforms[i].name && eval(platforms[i].name + ".push(['_trackEvent','" + key + "','" + value + "'])")
-        }
-    }
-    ;
-    window.h6app_shareConfig = window.h6app_shareConfig || {};
-    window.h6app_shareConfig.shareData || (window.h6app_shareConfig.shareData = {});
-    window.setShareData = function() {
-        wx.ready(function() {
-            var shareFriendSuccessFunc = function() {
-                window.statistics(window.platform, "-", window.h6app_shareConfig.toFriend || "分享到好友和群组");
-                h6app_shareConfig.success()
-            };
-            var shareAppData = {
-                title: h6app_shareConfig.shareData.title || "",
-                desc: h6app_shareConfig.shareData.desc || "",
-                imgUrl: h6app_shareConfig.shareData.imgUrl || "http://cdn.h5case.com.cn/cover.jpg",
-                link: h6app_shareConfig.shareData.link || window.location.href,
-                success: shareFriendSuccessFunc,
-                cancel: h6app_shareConfig.cancel || function() {}
-            };
-            wx.onMenuShareAppMessage(shareAppData);
-            var shareTimelineSuccessFunc = function() {
-                window.statistics(window.platform, "-", window.h6app_shareConfig.toTimeLine || "分享到朋友圈");
-                h6app_shareConfig.success()
-            };
-            var TimelineShareData = {
-                title: h6app_shareConfig.timeLineTitle || h6app_shareConfig.shareData.title || "",
-                desc: h6app_shareConfig.timeLineDesc || h6app_shareConfig.shareData.desc || "",
-                imgUrl: h6app_shareConfig.timeLineImgUrl || h6app_shareConfig.shareData.imgUrl || "http://cdn.h5case.com.cn/cover.jpg",
-                link: h6app_shareConfig.shareData.link || window.location.href,
-                success: shareTimelineSuccessFunc,
-                cancel: h6app_shareConfig.cancel || function() {}
-            };
-            wx.onMenuShareTimeline(TimelineShareData)
-        })
-    }
-    ;
-    window.resetShareData = function(resetShareDataFunc) {
-        resetShareDataFunc();
-        window.setShareData()
-    }
-    ;
-    window.getConfig = function(canMethod) {
-        var proveUrl = h6app_shareConfig.proveUrl || "//sso.h6app.com/jssdk2/getSignPackage";
-        var url = encodeURIComponent(window.location.href);
-        var sct = document.createElement("script");
-        sct.setAttribute("id", "dataProxy");
-        sct.src = proveUrl + "?url=" + url + "&callback=" + canMethod + "";
-        document.getElementsByTagName("body")[0].appendChild(sct)
-    }
-    ;
-    window.setConfig = function(result) {
-        wx.config(result.data);
-        setShareData()
-    }
-    ;
-    getConfig("setConfig");
-    pvStatistics();
-    function pvStatistics(platform, key, value) {
-        for (var i = 0; i < window.platform.length; i++) {
-            if (window.platform.name == "_hmt") {
-                _hmt.push(["_setCustomVar", 1, "visitor", "baidu", 1])
-            }
-        }
-        if (location.href.indexOf("from=groupmessage") > 0) {
-            window.statistics(window.platform, "-", window.h6app_shareConfig.fromGroup || "来自微信群的访问量")
-        } else {
-            if (location.href.indexOf("from=singlemessage") > 0) {
-                window.statistics(window.platform, "-", window.h6app_shareConfig.fromSingle || "来自好友的访问量")
-            } else {
-                if (location.href.indexOf("from=timeline") > 0) {
-                    window.statistics(window.platform, "-", window.h6app_shareConfig.fromTimline || "来自朋友圈的访问量")
-                }
-            }
-        }
-    }
-}
-)();
-
-
-
 
     function render1() {
         timer1 = requestAnimationFrame(render1);
@@ -773,10 +661,15 @@
     }
     function render2() {
         timer2 = requestAnimationFrame(render2);
+        targetRotation = targetRotation-targetRotation*0.05
         //camera.position.z= ( targetRotation - camera.position.z ); 
-        camera.position.z-= (camera.position.z-ss)*0.005;
+        //camera.position.z-= (camera.position.z-ss)*0.005;
+        camera.position.z-=targetRotation
         renderer.render(scene, camera);
-        
+        if (camera.position.z<= -4100) {
+            window.cancelAnimationFrame(timer2);
+            showDe();
+        };
     }
     //render();
 </script>
